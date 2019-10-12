@@ -24,7 +24,7 @@ return function (App $app, \DI\Container $di) {
 
     $app->group('/api', function (Group $group) use ($di) {
 
-        $group->get('/country', CountryAction::class);
+        $group->get('/countries', CountryAction::class);
 
         $group->get('/product', call(Product::class, 'listAll'));
         $group->get('/product/{id}', call(Product::class, 'listAll'));
