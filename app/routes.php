@@ -38,8 +38,8 @@ return function (App $app, \DI\Container $di) {
             $response->getBody()->write("this is test");
             return $response;
         });
-        $group->get('/test2', function(Request $request, Response $response, $args){
-            $response->getBody()->write("this is test2");
+        $group->get('/test4', function(Request $request, Response $response, $args){
+            $response->getBody()->write("this is test4");
             return $response;
         });
 
