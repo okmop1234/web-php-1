@@ -22,27 +22,26 @@ return function (App $app, \DI\Container $di) {
         return [$container->get($class), $method];
     }
 
-    $app->group('/api', function (Group $group) use ($di) {
+    $app->group('/slim_1/public', function (Group $group) use ($di) {
 
-        $group->get('/countries', CountryAction::class);
+        //route
+        $group->group('/api', function (Group $group) use ($di) {
 
-        $group->get('/product', call(Product::class, 'listAll'));
-        $group->get('/product/{id}', call(Product::class, 'listAll'));
-        $group->post('/product', call(Product::class, 'listAll'));
-        $group->put('/product/{id}', call(Product::class, 'listAll'));
-        $group->delete('/product/{id}', call(Product::class, 'listAll'));
+            $group->get('/countries', CountryAction::class);
 
-        //$group->get('/test', [new TestController(), 'test']);
+            $group->get('/product', call(Product::class, 'listAll'));
+            $group->get('/product/{id}', call(Product::class, 'get'));
+            $group->post('/product', call(Product::class, 'create'));
+            $group->put('/product/{id}', call(Product::class, 'update'));
+            $group->delete('/product/{id}', call(Product::class, 'delete'));
+
+            //$group->get('/test', [new TestController(), 'test']);
 //        $group->get('/test', call(TestController::class));
-        $group->get('/test', function(Request $request, Response $response, $args){
-            $response->getBody()->write("this is test");
-            return $response;
+            $group->get('/test', function (Request $request, Response $response, $args) {
+                $response->getBody()->write("this is test");
+                return $response;
+            });
         });
-        $group->get('/test3', function(Request $request, Response $response, $args){
-            $response->getBody()->write("this is test2");
-            return $response;
-        });
-
-
     });
+
 };

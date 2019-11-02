@@ -31,10 +31,10 @@ return function (ContainerBuilder $containerBuilder) {
             $capsule = new Manager;
             $capsule->addConnection([
                 'driver' => 'mysql',
-                'host' => 'db',
+                'host' => 'localhost',
                 'database' => 'test_db',
-                'username' => 'admin',
-                'password' => 'admin',
+                'username' => 'root',
+                'password' => null,
                 'charset' => 'utf8',
                 'collation' => 'utf8_general_ci',
                 'prefix' => '',
